@@ -28,7 +28,7 @@ public final class RemoteFeedLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void = { _ in }) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { result in
             completion(result)
         }
