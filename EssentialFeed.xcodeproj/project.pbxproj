@@ -14,6 +14,7 @@
 		169D92E527A2332400318B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 169D92E427A2332400318B44 /* Assets.xcassets */; };
 		169D92E827A2332400318B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 169D92E627A2332400318B44 /* LaunchScreen.storyboard */; };
 		169D92F327A2332400318B44 /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92F227A2332400318B44 /* EssentialFeedTests.swift */; };
+		169D930C27A2386D00318B44 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D930B27A2386D00318B44 /* FeedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		169D92E927A2332400318B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169D92EE27A2332400318B44 /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		169D92F227A2332400318B44 /* EssentialFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedTests.swift; sourceTree = "<group>"; };
+		169D930B27A2386D00318B44 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				169D92E427A2332400318B44 /* Assets.xcassets */,
 				169D92E627A2332400318B44 /* LaunchScreen.storyboard */,
 				169D92E927A2332400318B44 /* Info.plist */,
+				169D930B27A2386D00318B44 /* FeedItem.swift */,
 			);
 			path = EssentialFeed;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				169D930C27A2386D00318B44 /* FeedItem.swift in Sources */,
 				169D92E027A2332400318B44 /* ViewController.swift in Sources */,
 				169D92DC27A2332400318B44 /* AppDelegate.swift in Sources */,
 				169D92DE27A2332400318B44 /* SceneDelegate.swift in Sources */,
