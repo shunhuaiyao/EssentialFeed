@@ -14,19 +14,10 @@
 		169D92E527A2332400318B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 169D92E427A2332400318B44 /* Assets.xcassets */; };
 		169D92E827A2332400318B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 169D92E627A2332400318B44 /* LaunchScreen.storyboard */; };
 		169D92F327A2332400318B44 /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92F227A2332400318B44 /* EssentialFeedTests.swift */; };
-		169D92FD27A2332400318B44 /* EssentialFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92FC27A2332400318B44 /* EssentialFeedUITests.swift */; };
-		169D92FF27A2332400318B44 /* EssentialFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92FE27A2332400318B44 /* EssentialFeedUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		169D92EF27A2332400318B44 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 169D92D027A2332400318B44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 169D92D727A2332400318B44;
-			remoteInfo = EssentialFeed;
-		};
-		169D92F927A2332400318B44 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 169D92D027A2332400318B44 /* Project object */;
 			proxyType = 1;
@@ -46,9 +37,6 @@
 		169D92E927A2332400318B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		169D92EE27A2332400318B44 /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		169D92F227A2332400318B44 /* EssentialFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedTests.swift; sourceTree = "<group>"; };
-		169D92F827A2332400318B44 /* EssentialFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		169D92FC27A2332400318B44 /* EssentialFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedUITests.swift; sourceTree = "<group>"; };
-		169D92FE27A2332400318B44 /* EssentialFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +54,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		169D92F527A2332400318B44 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +62,6 @@
 			children = (
 				169D92DA27A2332400318B44 /* EssentialFeed */,
 				169D92F127A2332400318B44 /* EssentialFeedTests */,
-				169D92FB27A2332400318B44 /* EssentialFeedUITests */,
 				169D92D927A2332400318B44 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,7 +71,6 @@
 			children = (
 				169D92D827A2332400318B44 /* EssentialFeed.app */,
 				169D92EE27A2332400318B44 /* EssentialFeedTests.xctest */,
-				169D92F827A2332400318B44 /* EssentialFeedUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,15 +95,6 @@
 				169D92F227A2332400318B44 /* EssentialFeedTests.swift */,
 			);
 			path = EssentialFeedTests;
-			sourceTree = "<group>";
-		};
-		169D92FB27A2332400318B44 /* EssentialFeedUITests */ = {
-			isa = PBXGroup;
-			children = (
-				169D92FC27A2332400318B44 /* EssentialFeedUITests.swift */,
-				169D92FE27A2332400318B44 /* EssentialFeedUITestsLaunchTests.swift */,
-			);
-			path = EssentialFeedUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,24 +135,6 @@
 			productReference = 169D92EE27A2332400318B44 /* EssentialFeedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		169D92F727A2332400318B44 /* EssentialFeedUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 169D930827A2332400318B44 /* Build configuration list for PBXNativeTarget "EssentialFeedUITests" */;
-			buildPhases = (
-				169D92F427A2332400318B44 /* Sources */,
-				169D92F527A2332400318B44 /* Frameworks */,
-				169D92F627A2332400318B44 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				169D92FA27A2332400318B44 /* PBXTargetDependency */,
-			);
-			name = EssentialFeedUITests;
-			productName = EssentialFeedUITests;
-			productReference = 169D92F827A2332400318B44 /* EssentialFeedUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +149,6 @@
 						CreatedOnToolsVersion = 13.1;
 					};
 					169D92ED27A2332400318B44 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 169D92D727A2332400318B44;
-					};
-					169D92F727A2332400318B44 = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 169D92D727A2332400318B44;
 					};
@@ -221,7 +169,6 @@
 			targets = (
 				169D92D727A2332400318B44 /* EssentialFeed */,
 				169D92ED27A2332400318B44 /* EssentialFeedTests */,
-				169D92F727A2332400318B44 /* EssentialFeedUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -238,13 +185,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		169D92EC27A2332400318B44 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		169D92F627A2332400318B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,15 +212,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		169D92F427A2332400318B44 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				169D92FD27A2332400318B44 /* EssentialFeedUITests.swift in Sources */,
-				169D92FF27A2332400318B44 /* EssentialFeedUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,11 +219,6 @@
 			isa = PBXTargetDependency;
 			target = 169D92D727A2332400318B44 /* EssentialFeed */;
 			targetProxy = 169D92EF27A2332400318B44 /* PBXContainerItemProxy */;
-		};
-		169D92FA27A2332400318B44 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 169D92D727A2332400318B44 /* EssentialFeed */;
-			targetProxy = 169D92F927A2332400318B44 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -439,6 +365,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PNTZVK43L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EssentialFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -466,6 +393,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PNTZVK43L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EssentialFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -493,6 +421,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PNTZVK43L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -517,6 +446,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PNTZVK43L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -531,50 +461,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EssentialFeed.app/EssentialFeed";
-			};
-			name = Release;
-		};
-		169D930927A2332400318B44 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sean.EssentialFeedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EssentialFeed;
-			};
-			name = Debug;
-		};
-		169D930A27A2332400318B44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sean.EssentialFeedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EssentialFeed;
 			};
 			name = Release;
 		};
@@ -604,15 +490,6 @@
 			buildConfigurations = (
 				169D930627A2332400318B44 /* Debug */,
 				169D930727A2332400318B44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		169D930827A2332400318B44 /* Build configuration list for PBXNativeTarget "EssentialFeedUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				169D930927A2332400318B44 /* Debug */,
-				169D930A27A2332400318B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
