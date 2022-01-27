@@ -51,11 +51,32 @@ class RemoteFeedLoaderTests: XCTestCase {
             switch result {
             case .failure(let error):
                 capturedErrors.append(error)
+            default:
+                break
             }
         }
         client.complete(with: .connectivity)
         
         XCTAssertEqual(capturedErrors, [.connectivity])
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() throws {
+        let (client, sut) = makeSUT()
+                
+        let samples = [199, 201, 300, 400, 500]
+        samples.enumerated().forEach { index, sample in
+            var capturedErrors: [RemoteFeedLoader.Error] = []
+            sut.load { result in
+                switch result {
+                case .failure(let error):
+                    capturedErrors.append(error)
+                default:
+                    break
+                }
+            }
+            client.complete(withStatusCode: sample, at: index)
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
     
     // MARK: - Helpers
@@ -67,18 +88,34 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        private var messages: [(url: URL, completion: (RemoteFeedLoader.Result) -> Void)] = []
+        private var messages: [(url: URL, completion: (HTTPClientResult) -> Void)] = []
         
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (RemoteFeedLoader.Result) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append((url, completion))
         }
         
         func complete(with error: RemoteFeedLoader.Error, at index: Int = .zero) {
             messages[index].completion(.failure(error))
+        }
+        
+        func complete(withStatusCode code: Int, at index: Int = .zero) {
+            let response = HTTPURLResponse(
+                url: requestedURLs[index],
+                statusCode: code,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            let result: HTTPClientResult
+            if code == 200 {
+                result = .success(response)
+            } else {
+                result = .failure(.invalidData)
+            }
+            messages[index].completion(result)
         }
     }
 }
