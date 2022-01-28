@@ -46,18 +46,9 @@ class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() throws {
         let (client, sut) = makeSUT()
         
-        var capturedErrors: [RemoteFeedLoader.Error] = []
-        sut.load { result in
-            switch result {
-            case .failure(let error):
-                capturedErrors.append(error)
-            default:
-                break
-            }
+        expect(sut, toCompleteWithError: .connectivity) {
+            client.complete(with: .connectivity)
         }
-        client.complete(with: .connectivity)
-        
-        XCTAssertEqual(capturedErrors, [.connectivity])
     }
     
     func test_load_deliversErrorOnNon200HTTPResponse() throws {
@@ -65,17 +56,9 @@ class RemoteFeedLoaderTests: XCTestCase {
                 
         let samples = [199, 201, 300, 400, 500]
         samples.enumerated().forEach { index, sample in
-            var capturedErrors: [RemoteFeedLoader.Error] = []
-            sut.load { result in
-                switch result {
-                case .failure(let error):
-                    capturedErrors.append(error)
-                default:
-                    break
-                }
+            expect(sut, toCompleteWithError: .invalidData) {
+                client.complete(withStatusCode: sample, at: index)
             }
-            client.complete(withStatusCode: sample, at: index)
-            XCTAssertEqual(capturedErrors, [.invalidData])
         }
     }
     
@@ -85,6 +68,22 @@ class RemoteFeedLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
         return (client, sut)
+    }
+    
+    private func expect(_ sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        var capturedErrors: [RemoteFeedLoader.Error] = []
+        sut.load { result in
+            switch result {
+            case .failure(let error):
+                capturedErrors.append(error)
+            default:
+                break
+            }
+        }
+        
+        action()
+        
+        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
     }
     
     private class HTTPClientSpy: HTTPClient {
