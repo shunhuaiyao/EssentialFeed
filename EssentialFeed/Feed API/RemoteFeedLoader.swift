@@ -20,7 +20,7 @@ public final class RemoteFeedLoader {
     private let url: URL
     private let client: HTTPClient
     
-    public enum Error {
+    public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
@@ -39,9 +39,8 @@ public final class RemoteFeedLoader {
         client.get(from: url) { result in
             switch result {
             case .success(let data, let response):
-                if response.statusCode == 200,
-                   let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.items.map { $0.item }))
+                if let items = try? FeedItemsMapper.map(data, response) {
+                    completion(.success(items))
                 } else {
                     completion(.failure(.invalidData))
                 }
@@ -52,22 +51,29 @@ public final class RemoteFeedLoader {
     }
 }
 
-private struct Root: Decodable {
-    let items: [item]
-}
+private class FeedItemsMapper {
+    private struct Root: Decodable {
+        let items: [item]
+    }
 
-private struct item: Decodable {
-    let id: UUID
-    let description: String?
-    let location: String?
-    let image: URL
+    private struct item: Decodable {
+        let id: UUID
+        let description: String?
+        let location: String?
+        let image: URL
+        
+        var item: FeedItem {
+            return FeedItem(
+                id: id,
+                description: description,
+                location: location,
+                imageURL: image
+            )
+        }
+    }
     
-    var item: FeedItem {
-        return FeedItem(
-            id: id,
-            description: description,
-            location: location,
-            imageURL: image
-        )
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [FeedItem] {
+        guard response.statusCode == 200 else { throw RemoteFeedLoader.Error.invalidData }
+        return try JSONDecoder().decode(Root.self, from: data).items.map { $0.item }
     }
 }
