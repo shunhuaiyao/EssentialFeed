@@ -32,7 +32,16 @@ public final class RemoteFeedLoader {
     
     public func load(completion: @escaping (HTTPClientResult) -> Void) {
         client.get(from: url) { result in
-            completion(result)
+            switch result {
+            case .success(let response):
+                if response.statusCode == 200 {
+                    completion(.success(response))
+                } else {
+                    completion(.failure(.invalidData))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

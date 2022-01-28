@@ -109,13 +109,7 @@ class RemoteFeedLoaderTests: XCTestCase {
                 httpVersion: nil,
                 headerFields: nil
             )!
-            let result: HTTPClientResult
-            if code == 200 {
-                result = .success(response)
-            } else {
-                result = .failure(.invalidData)
-            }
-            messages[index].completion(result)
+            messages[index].completion(.success(response))
         }
     }
 }
