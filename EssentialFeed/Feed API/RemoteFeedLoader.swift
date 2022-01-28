@@ -12,7 +12,7 @@ public protocol HTTPClient {
 }
 
 public enum HTTPClientResult {
-    case success(HTTPURLResponse)
+    case success(Data, HTTPURLResponse)
     case failure(RemoteFeedLoader.Error)
 }
 
@@ -38,8 +38,8 @@ public final class RemoteFeedLoader {
     public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success(let response):
-                if response.statusCode == 200 {
+            case .success(let data, let response):
+                if response.statusCode == 200, let _ = try? JSONSerialization.jsonObject(with: data) {
                     completion(.success([]))
                 } else {
                     completion(.failure(.invalidData))
