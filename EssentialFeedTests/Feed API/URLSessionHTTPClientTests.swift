@@ -28,17 +28,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func test_getFromURL_createsDataTaskWithURL() throws {
-        let url = URL(string: "https://any-url.com")!
-        // TODO: fix warning that init method was deprecated
-        let session = URLSessionSpy()
-        let sut = URLSessionHTTPClient(session: session)
-        
-        sut.get(from: url)
-        
-        XCTAssertEqual(session.receivedURLs, [url])
-    }
-    
     func test_getFromURL_resumeDataTaskWithURL() throws {
         let url = URL(string: "https://any-url.com")!
         // TODO: fix warning that init method was deprecated
@@ -55,11 +44,9 @@ class URLSessionHTTPClientTests: XCTestCase {
     // MARK: - Helper
     
     private class URLSessionSpy: URLSession {
-        var receivedURLs: [URL] = []
         var stubs: [URL: URLSessionDataTask] = [:]
         
         override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-            receivedURLs.append(url)
             // TODO: fix warning that init method was deprecated
             return stubs[url] ?? FakeURLSessionDataTask()
         }
