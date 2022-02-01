@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import EssentialFeed
 
 class URLSessionHTTPClient {
     let session: URLSession
@@ -14,8 +15,12 @@ class URLSessionHTTPClient {
         self.session = session
     }
     
-    func get(from url: URL) {
-        session.dataTask(with: url) { _, _, _ in }.resume()
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+        session.dataTask(with: url) { _, _, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+        }.resume()
     }
 }
 
@@ -36,23 +41,56 @@ class URLSessionHTTPClientTests: XCTestCase {
         session.stub(url: url, task: task)
         let sut = URLSessionHTTPClient(session: session)
         
-        sut.get(from: url)
+        sut.get(from: url) { _ in }
         
         XCTAssertEqual(task.resumeCallCount, 1)
+    }
+    
+    func test_getFromURL_failsOnRequestError() throws {
+        let url = URL(string: "https://any-url.com")!
+        // TODO: fix warning that init method was deprecated
+        let session = URLSessionSpy()
+        let error = NSError(domain: "any error", code: 1)
+        session.stub(url: url, error: error)
+        let sut = URLSessionHTTPClient(session: session)
+        
+        let exp = expectation(description: "wait for completion")
+        sut.get(from: url) { result in
+            switch result {
+            case let .failure(receivedError as NSError):
+                XCTAssertEqual(receivedError, error)
+            default:
+                XCTFail("Expected failure with error \(error), got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - Helper
     
     private class URLSessionSpy: URLSession {
-        var stubs: [URL: URLSessionDataTask] = [:]
+        private var stubs: [URL: Stub] = [:]
+        
+        private struct Stub {
+            let task: URLSessionDataTask
+            let error: NSError?
+        }
         
         override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
             // TODO: fix warning that init method was deprecated
-            return stubs[url] ?? FakeURLSessionDataTask()
+            guard let stub = stubs[url] else {
+                fatalError("Couldn't find stub from \(url)")
+            }
+            completionHandler(nil, nil, stub.error)
+            return stub.task
         }
         
-        func stub(url: URL, task: URLSessionDataTask) {
-            stubs[url] = task
+        // TODO: fix warning that init method was deprecated
+        func stub(url: URL, task: URLSessionDataTask = FakeURLSessionDataTask(), error: NSError? = nil) {
+            stubs[url] = Stub(task: task, error: error)
         }
     }
     
