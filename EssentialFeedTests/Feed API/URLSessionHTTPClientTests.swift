@@ -8,10 +8,18 @@
 import XCTest
 import EssentialFeed
 
+protocol HTTPSession {
+    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask
+}
+
+protocol HTTPSessionTask {
+    func resume()
+}
+
 class URLSessionHTTPClient {
-    let session: URLSession
+    let session: HTTPSession
     
-    init(session: URLSession) {
+    init(session: HTTPSession) {
         self.session = session
     }
     
@@ -35,9 +43,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     func test_getFromURL_resumeDataTaskWithURL() throws {
         let url = URL(string: "https://any-url.com")!
-        // TODO: fix warning that init method was deprecated
-        let session = URLSessionSpy()
-        let task = URLSessionDataTaskSpy()
+        let session = HTTPSessionSpy()
+        let task = HTTPSessionTaskSpy()
         session.stub(url: url, task: task)
         let sut = URLSessionHTTPClient(session: session)
         
@@ -48,8 +55,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     func test_getFromURL_failsOnRequestError() throws {
         let url = URL(string: "https://any-url.com")!
-        // TODO: fix warning that init method was deprecated
-        let session = URLSessionSpy()
+        let session = HTTPSessionSpy()
         let error = NSError(domain: "any error", code: 1)
         session.stub(url: url, error: error)
         let sut = URLSessionHTTPClient(session: session)
@@ -71,16 +77,15 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     // MARK: - Helper
     
-    private class URLSessionSpy: URLSession {
+    private class HTTPSessionSpy: HTTPSession {
         private var stubs: [URL: Stub] = [:]
         
         private struct Stub {
-            let task: URLSessionDataTask
+            let task: HTTPSessionTask
             let error: NSError?
         }
         
-        override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-            // TODO: fix warning that init method was deprecated
+        func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask {
             guard let stub = stubs[url] else {
                 fatalError("Couldn't find stub from \(url)")
             }
@@ -88,20 +93,19 @@ class URLSessionHTTPClientTests: XCTestCase {
             return stub.task
         }
         
-        // TODO: fix warning that init method was deprecated
-        func stub(url: URL, task: URLSessionDataTask = FakeURLSessionDataTask(), error: NSError? = nil) {
+        func stub(url: URL, task: HTTPSessionTask = FakeHTTPSessionTask(), error: NSError? = nil) {
             stubs[url] = Stub(task: task, error: error)
         }
     }
     
-    private class FakeURLSessionDataTask: URLSessionDataTask {
-        override func resume() {}
+    private class FakeHTTPSessionTask: HTTPSessionTask {
+        func resume() {}
     }
     
-    private class URLSessionDataTaskSpy: URLSessionDataTask {
+    private class HTTPSessionTaskSpy: HTTPSessionTask {
         var resumeCallCount: Int = 0
         
-        override func resume() {
+        func resume() {
             resumeCallCount += 1
         }
     }
