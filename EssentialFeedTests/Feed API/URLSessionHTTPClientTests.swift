@@ -79,7 +79,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         URL(string: "https://any-url.com")!
     }
     
-    private func resultErrorFor(data: Data?, response: HTTPURLResponse?, error: NSError?, file: StaticString = #filePath, line: UInt = #line) -> Error? {
+    private func resultErrorFor(data: Data?, response: URLResponse?, error: NSError?, file: StaticString = #filePath, line: UInt = #line) -> Error? {
         URLProtocolStub.stub(data: data, response: response, error: error)
         
         let exp = expectation(description: "wait for completion")
@@ -107,11 +107,11 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         private struct Stub {
             let data: Data?
-            let response: HTTPURLResponse?
+            let response: URLResponse?
             let error: NSError?
         }
         
-        static func stub(data: Data?, response: HTTPURLResponse?, error: NSError?) {
+        static func stub(data: Data?, response: URLResponse?, error: NSError?) {
             stub = Stub(data: data, response: response, error: error)
         }
         
