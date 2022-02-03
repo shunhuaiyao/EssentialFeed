@@ -54,7 +54,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     func test_getFromURL_failsOnRequestError() throws {
         let error = NSError(domain: "any error", code: 1, userInfo: nil)
-        URLProtocolStub.stub(url: anyURL(), data: nil, response: nil, error: error)
+        URLProtocolStub.stub(data: nil, response: nil, error: error)
         
         let exp = expectation(description: "wait for completion")
         
@@ -95,7 +95,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             let error: NSError?
         }
         
-        static func stub(url: URL, data: Data?, response: HTTPURLResponse?, error: NSError?) {
+        static func stub(data: Data?, response: HTTPURLResponse?, error: NSError?) {
             stub = Stub(data: data, response: response, error: error)
         }
         
