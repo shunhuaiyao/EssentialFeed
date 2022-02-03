@@ -25,16 +25,19 @@ class URLSessionHTTPClient {
 }
 
 class URLSessionHTTPClientTests: XCTestCase {
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        
+        URLProtocolStub.startInterceptingRequests()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        URLProtocolStub.stopInterceptingRequests()
     }
     
     func test_getFromURL_performGETRequestWithURL() throws {
-        URLProtocolStub.startInterceptingRequests()
         let url = URL(string: "https://any-url.com")!
         let exp =  expectation(description: "Wait for request")
         
@@ -44,23 +47,19 @@ class URLSessionHTTPClientTests: XCTestCase {
             exp.fulfill()
         }
         
-        URLSessionHTTPClient().get(from: url) { _ in }
+        makeSUT().get(from: url) { _ in }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolStub.stopInterceptingRequests()
     }
     
     func test_getFromURL_failsOnRequestError() throws {
-        URLProtocolStub.startInterceptingRequests()
         let url = URL(string: "https://any-url.com")!
         let error = NSError(domain: "any error", code: 1, userInfo: nil)
         URLProtocolStub.stub(url: url, data: nil, response: nil, error: error)
         
-        let sut = URLSessionHTTPClient()
-        
         let exp = expectation(description: "wait for completion")
         
-        sut.get(from: url) { result in
+        makeSUT().get(from: url) { result in
             switch result {
             case let .failure(receivedError as NSError):
                 XCTAssertEqual(receivedError.domain, error.domain)
@@ -73,10 +72,13 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolStub.stopInterceptingRequests()
     }
     
     // MARK: - Helper
+    
+    private func makeSUT() -> URLSessionHTTPClient {
+        URLSessionHTTPClient()
+    }
     
     private class URLProtocolStub: URLProtocol {
         private static var stub: Stub?
