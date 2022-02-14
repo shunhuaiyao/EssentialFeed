@@ -17,7 +17,6 @@ class FeedStore {
         case insert([FeedItem], Date)
     }
 
-    var insertions: [(items: [FeedItem], timestamp: Date)] = []
     private(set) var receivedMessages: [ReceivedMessage] = []
     
     private var deletionCompletions: [DeletionCompletion] = []
@@ -38,7 +37,6 @@ class FeedStore {
     
     func insert(_ items: [FeedItem], timestamp: Date, completion: @escaping InsertionCompletion) {
         receivedMessages.append(.insert(items, timestamp))
-        insertions.append((items, timestamp))
         insertionCompletions.append(completion)
     }
     
