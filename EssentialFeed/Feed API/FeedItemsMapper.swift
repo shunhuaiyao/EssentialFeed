@@ -7,36 +7,23 @@
 
 import Foundation
 
+internal struct RemoteFeedItem: Decodable {
+    let id: UUID
+    let description: String?
+    let location: String?
+    let image: URL
+}
+
 final class FeedItemsMapper {
     private struct Root: Decodable {
-        let items: [item]
-        
-        var feedItems: [FeedItem] {
-            items.map({ $0.item })
-        }
-    }
-
-    private struct item: Decodable {
-        let id: UUID
-        let description: String?
-        let location: String?
-        let image: URL
-        
-        var item: FeedItem {
-            return FeedItem(
-                id: id,
-                description: description,
-                location: location,
-                imageURL: image
-            )
-        }
+        let items: [RemoteFeedItem]
     }
     
     private static let OK_200: Int = 200
     
-    static func map(_ data: Data, response: HTTPURLResponse) -> RemoteFeedLoader.Result {
+    static func map(_ data: Data, response: HTTPURLResponse) throws -> [RemoteFeedItem] {
         guard response.statusCode == OK_200,
-              let root = try? JSONDecoder().decode(Root.self, from: data) else { return .failure(RemoteFeedLoader.Error.invalidData) }
-        return .success(root.feedItems)
+              let root = try? JSONDecoder().decode(Root.self, from: data) else { throw RemoteFeedLoader.Error.invalidData }
+        return root.items
     }
 }
