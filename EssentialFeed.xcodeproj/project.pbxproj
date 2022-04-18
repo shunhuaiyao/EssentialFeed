@@ -31,6 +31,7 @@
 		16BB478627A7C690007C3354 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BB478527A7C690007C3354 /* HTTPClient.swift */; };
 		16BB478827A7C721007C3354 /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BB478727A7C721007C3354 /* FeedItemsMapper.swift */; };
 		16BB478B27A900D8007C3354 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BB478A27A900D8007C3354 /* URLSessionHTTPClientTests.swift */; };
+		16CA1D98280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA1D97280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		16BB478527A7C690007C3354 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		16BB478727A7C721007C3354 /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 		16BB478A27A900D8007C3354 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		16CA1D97280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFeedCacheUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 				1625C2A727F1B9E3000DCFB1 /* Helpers */,
 				16A0562527B60DD900E0E7B2 /* CacheFeedUseCaseTests.swift */,
 				1625C2A527F1B793000DCFB1 /* LoadFeedFromCacheUseCaseTests.swift */,
+				16CA1D97280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16CA1D98280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				169D92F327A2332400318B44 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */,
 				16BB478B27A900D8007C3354 /* URLSessionHTTPClientTests.swift in Sources */,
 				1625C2A927F1BA12000DCFB1 /* FeedStoreSpy.swift in Sources */,
