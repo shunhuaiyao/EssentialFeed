@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161CC72F284071C5004A5385 /* CodableFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161CC72E284071C4004A5385 /* CodableFeedStoreTests.swift */; };
 		1625C2A627F1B793000DCFB1 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625C2A527F1B793000DCFB1 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		1625C2A927F1BA12000DCFB1 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625C2A827F1BA12000DCFB1 /* FeedStoreSpy.swift */; };
 		162AE41127E4988900DC1048 /* RemoteFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162AE41027E4988800DC1048 /* RemoteFeedItem.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		161CC72E284071C4004A5385 /* CodableFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFeedStoreTests.swift; sourceTree = "<group>"; };
 		1625C2A527F1B793000DCFB1 /* LoadFeedFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		1625C2A827F1BA12000DCFB1 /* FeedStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpy.swift; sourceTree = "<group>"; };
 		162AE41027E4988800DC1048 /* RemoteFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedItem.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				16A0562527B60DD900E0E7B2 /* CacheFeedUseCaseTests.swift */,
 				1625C2A527F1B793000DCFB1 /* LoadFeedFromCacheUseCaseTests.swift */,
 				16CA1D97280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift */,
+				161CC72E284071C4004A5385 /* CodableFeedStoreTests.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161CC72F284071C5004A5385 /* CodableFeedStoreTests.swift in Sources */,
 				16CA1D98280CFCD0001A2019 /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				169D92F327A2332400318B44 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */,
 				16BB478B27A900D8007C3354 /* URLSessionHTTPClientTests.swift in Sources */,
