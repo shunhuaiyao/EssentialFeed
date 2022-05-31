@@ -126,6 +126,26 @@ class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
     
+    func test_storeSideEffects_runSerially() {
+        let sut = makeSUT()
+        let op1 = expectation(description: "Wait for operation 1")
+        let op2 = expectation(description: "Wait for operation 2")
+        let op3 = expectation(description: "Wait for operation 3")
+        let completedOperationsInOrder = [op1, op2, op3]
+        
+        sut.insert(uniqueImageFeed().local, timestamp: Date()) { _ in
+            op1.fulfill()
+        }
+        sut.deleteCachedFeed { _ in
+            op2.fulfill()
+        }
+        sut.insert(uniqueImageFeed().local, timestamp: Date()) { _ in
+            op3.fulfill()
+        }
+        
+        wait(for: completedOperationsInOrder, timeout: 5.0, enforceOrder: true)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> FeedStore {
