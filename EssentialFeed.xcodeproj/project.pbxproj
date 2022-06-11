@@ -139,15 +139,31 @@
 		163F019727BFB2090056601D /* Feed Cache */ = {
 			isa = PBXGroup;
 			children = (
+				168051D928545D8900357CAB /* Infrastructure */,
 				163F019827BFB22A0056601D /* LocalFeedLoader.swift */,
 				163F019A27BFB32F0056601D /* FeedStore.swift */,
 				162AE41227E498B200DC1048 /* LocalFeedImage.swift */,
 				1669582C283B345200EABDD0 /* FeedCachePolicy.swift */,
 				16BC4AAC28449AC10051DF65 /* CodableFeedStore.swift */,
+			);
+			path = "Feed Cache";
+			sourceTree = "<group>";
+		};
+		168051D928545D8900357CAB /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				168051DA2854624400357CAB /* CoreData */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		168051DA2854624400357CAB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
 				16BC4B1228483F8A0051DF65 /* CoreDataFeedStore.swift */,
 				16BC4AB4284612850051DF65 /* FeedStore.xcdatamodeld */,
 			);
-			path = "Feed Cache";
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		169D92CF27A2332400318B44 = {
