@@ -21,6 +21,7 @@
 		168051DF2854644500357CAB /* ManagedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168051DE2854644500357CAB /* ManagedCache.swift */; };
 		168051E12854649900357CAB /* ManagedFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168051E02854649900357CAB /* ManagedFeedImage.swift */; };
 		168051E92854680C00357CAB /* EssentialFeedCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168051E82854680C00357CAB /* EssentialFeedCacheIntegrationTests.swift */; };
+		168051EF285470A300357CAB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A0560F27AC7ED800E0E7B2 /* XCTestCase+MemoryLeakTracking.swift */; };
 		169D92DC27A2332400318B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92DB27A2332400318B44 /* AppDelegate.swift */; };
 		169D92DE27A2332400318B44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92DD27A2332400318B44 /* SceneDelegate.swift */; };
 		169D92E027A2332400318B44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169D92DF27A2332400318B44 /* ViewController.swift */; };
@@ -481,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				168051E92854680C00357CAB /* EssentialFeedCacheIntegrationTests.swift in Sources */,
+				168051EF285470A300357CAB /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
